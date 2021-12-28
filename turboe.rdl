@@ -1,0 +1,66 @@
+
+
+
+addrmap turbo_encab {
+    name = "Turbo-Encabulator";
+    desc = "
+    !!! tip
+        This is an example output from the [PeakRDL HTML](https://github.com/SystemRDL/PeakRDL-html)
+        register space documentation generator.
+
+        The content of these pages are generated from the register structure and
+        `desc` properties from [SystemRDL source](https://github.com/SystemRDL/PeakRDL-html/blob/master/example/turboencabulator.rdl).
+        Description text can be enhanced by using 'RDLFormatCode' tags, or Markdown syntax.
+
+        Look for these 'tip' boxes throughout this demo for more highlights of features.
+
+    Configuration & status address space for the state-of-the-art Turbo Encabulator.
+    It is strongly recommended that users of the Turbo Encabulator watch the
+    [training video](https://www.youtube.com/watch?v=rLDgQg6bq7o) prior to attempting
+    to supply inverse reactive current. The product brief for Rockwell Automation's
+    [Retro Encabulator](https://www.youtube.com/watch?v=RXJKdh1KZ0w) is also a sufficient substitute.
+
+    ![Turbo Encabulator](turboencabulator.jpg)
+
+    ";
+    reg {
+        name = "System Control Register";
+        field {
+            sw=rw; hw=r;
+        } reset;
+
+        field {
+            name = "Magneto-reluctance";
+            desc = "
+            Set the absolute magneto-reluctance.
+            ";
+            sw=rw; hw=r;
+        } reluctance[8] = 0x42;
+
+        field {
+            name = "Capactive diractance";
+            desc = "
+            Capacitive diractance relative to the lunar waneshaft.
+            ";
+            sw=rw; hw=r;
+        } diractance[8];
+        diractance->reset = reluctance;
+    } ctrl @ 0x0000;
+
+    reg {
+        name = "Encabulator Status";
+
+        field {
+            desc = "Degree of waneshaft side fumbling.
+
+            If this reads as non-zero, immediately reduce differential girdle spring tension.";
+            sw=r; hw=w;
+        }side_fumbling[12];
+
+        field {
+            name = "Stator revolutions per month";
+            sw=r; hw=w;
+        }stator_rpm[31:16];
+    }status;
+    
+};
