@@ -21,11 +21,35 @@ try:
     root = rdlc.elaborate()
     # Traverse the register model!
 
+    registers = []
+
     #iterate over registries definition
     for register_def in root.top.inst.children:
-        print(register_def)
+        register = dict()
+        register["name"] = register_def.inst_name
+        fields = []
+        register["fields"] = fields
 
-        for field_def in register_def
+        for field_def in register_def.children:
+            field = dict()
+            field["id"] = field_def.inst_name
+            field["low"] = field_def.low
+            field["lsb"] = field_def.lsb
+            field["msb"] = field_def.msb
+            field["width"] = field_def.width
+            if "hw" in field_def.properties:
+                field["rights"] = field_def.properties["hw"].value
+            else:
+                field["rights"] = "undefined"
+            if "reset" in field_def.properties:
+                field["reset"] = field_def.properties["reset"]
+            else:
+                field["reset"] = "undefined"
+            fields.append(field)
+
+        registers.append(register)
+
+    print(registers)
 
     #walker = RDLWalker(unroll=True)
     #listener = MyModelPrintingListener()
