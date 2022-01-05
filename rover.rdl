@@ -1,6 +1,6 @@
 addrmap rovercmds {
     littleendian;
-    reg {
+    rsseg {
         name="COMMANDS REGISTER FOR THEORETICAL ROVER";
         field {
             name = "device identifier";

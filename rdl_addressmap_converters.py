@@ -7,7 +7,7 @@ from print_tree import OtherTraverseListener
 from systemrdl import RDLListener
 from systemrdl.node import FieldNode, Node
 from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
-from content_generation_exceptions import RDLTransformationException, RDLSyntaxRelatedTransformationException
+from rdl_parsing_exceptions import RDLTransformationException, RDLSyntaxRelatedTransformationException
 from systemrdl.parser import sa_systemrdl
 from systemrdl import preprocessor
 from systemrdl.parser.sa_systemrdl import SA_ErrorListener
