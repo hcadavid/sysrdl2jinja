@@ -1,4 +1,4 @@
-[cols="20%,70%a"]
+[cols="20%,72%a"]
 |===
 | Register name | Fields
 
@@ -9,13 +9,13 @@
 
 [cols="50%,25%,25%"]
 !===
-! Field name ! Rights ! Address
+! Field name ! Rights ! Size(bytes)
 
     {% for field in register.fields %}
 
 ! {{field.name}}
 ! {{field.rights}}
-! {{field.address}}
+! {{field.width}}
 
     {%endfor%}
 
