@@ -51,21 +51,23 @@ if __name__ == "__main__":
     from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
     from jinja2 import Template
 
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 4:
         print("SystemRDL to Jinja template converter", file=sys.stderr)
-        print("Syntax: ", sys.argv[0], " [rdl_file] [jinja_template_file]", file=sys.stderr)
+        print("Syntax: ", sys.argv[0], " [rdl_file] [jinja_template_file] [output_file]", file=sys.stderr)
         exit(1)
 
 
     # Collect input files from the command line arguments
     rdl_file = sys.argv[1]
     template_file = sys.argv[2]
+    output_file = sys.argv[3]
 
     try:
         registers = parse_rdl_file(rdl_file)
         with open(template_file) as file_:
             template = Template(file_.read())
-        print(template.render(registers=registers))
+        with open(output_file, 'w') as output_:
+            output_.write(template.render(registers=registers))
         exit(0)
     except RDLCompileError as exc:
         # error details are sent to stderr by the parser, next line add further details
