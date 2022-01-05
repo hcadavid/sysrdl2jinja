@@ -3,16 +3,16 @@ from setuptools import setup, find_packages
 with open('requirements.txt') as f:
     requirements = f.readlines()
   
-long_description = 'Sample Package made for a demo \
-      of its making for the GeeksforGeeks Article.'
-  
+long_description = 'Transforms a SystemRDL specification into a text-based \
+      third-party format defined by a Jinja2 template.'
+      
 setup(
         name ='sysrdl2jinja',
-        version ='1.0.0',
+        version ='0.01',
         author ='Hector Cadavid',
-        author_email ='vibhu4agarwal@gmail.com',
-        url ='https://github.com/Vibhu-Agarwal/vibhu4gfg',
-        description ='Demo Package for GfG Article.',
+        author_email ='hector.cadavid@gmail.com',
+        url ='https://github.com/hcadavid/sysrdl2jinja',
+        description ='SystemRDL to Jinja2 template.',
         long_description = long_description,
         long_description_content_type ="text/markdown",
         license ='MIT',
@@ -27,7 +27,7 @@ setup(
             "License :: OSI Approved :: MIT License",
             "Operating System :: OS Independent",
         ),
-        keywords ='geeksforgeeks gfg article python package vibhu4agarwal',
+        keywords ='SystemRDL Jinja2',
         install_requires = requirements,
         zip_safe = False
 )
