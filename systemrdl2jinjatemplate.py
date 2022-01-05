@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 
 from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
 from RDLModelListeners import MyModelPrintingListener
@@ -19,9 +20,16 @@ try:
     # Elaborate the design
     root = rdlc.elaborate()
     # Traverse the register model!
-    walker = RDLWalker(unroll=True)
-    listener = MyModelPrintingListener()
-    walker.walk(root, listener)
+
+    #iterate over registries definition
+    for register_def in root.top.inst.children:
+        print(register_def)
+
+        for field_def in register_def
+
+    #walker = RDLWalker(unroll=True)
+    #listener = MyModelPrintingListener()
+    #walker.walk(root, listener)
 
 
 except RDLCompileError:

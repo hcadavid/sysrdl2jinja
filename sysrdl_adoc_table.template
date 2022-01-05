@@ -1,0 +1,27 @@
+[cols="20%,70%a"]
+|===
+| Register name | Fields
+
+{% for register in registers %}
+
+| {{register.name}}
+|
+
+[cols="50%,25%,25%"]
+!===
+! Field name ! Rights ! Address
+
+    {% for field in register.fields %}
+
+! {{field.name}}
+! {{field.rights}}
+! {{field.address}}
+
+    {%endfor%}
+
+!===
+
+{%endfor%}
+
+
+|===

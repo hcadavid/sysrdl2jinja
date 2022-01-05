@@ -1,0 +1,10 @@
+[cols="15%,30%,30%,25%"]
+|===
+|Date |ID |Position|Status
+{% for item in items %}
+|{{item.date}}
+|{{item.id}}
+|{{item.position}}
+|{{item.status}}
+{% endfor %}
+|===
