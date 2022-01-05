@@ -1,5 +1,7 @@
 import sys
 import os
+from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
+from jinja2 import Template
 
 
 def parse_rdl_file(_rdl_file):
@@ -47,9 +49,7 @@ def parse_rdl_file(_rdl_file):
     return _registers
 
 
-if __name__ == "__main__":
-    from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
-    from jinja2 import Template
+def main():
 
     if len(sys.argv) < 4:
         print("SystemRDL to Jinja template converter", file=sys.stderr)
