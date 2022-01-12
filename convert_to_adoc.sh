@@ -11,6 +11,6 @@ else
 	pip install -r requirements.txt
 fi
 
-bin/python3 sysrdl2jinja/convert.py $1 templates/sysrdl_adoc_table.template $2
+python3 sysrdl2jinja/convert.py $1 templates/sysrdl_adoc_table.template $2
 
 cd -
