@@ -1,0 +1,10 @@
+#ifndef REGS_H_
+#define REGS_H_
+
+{% for register in registers %}
+    {% for field in register.fields %}
+#define {{register.name}}_{{field.name.replace(' ','_')}}  {{field.width}}
+    {%endfor%}
+{%endfor%}
+
+#endif
