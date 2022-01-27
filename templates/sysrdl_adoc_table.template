@@ -1,18 +1,19 @@
 [cols="20%,72%a"]
 |===
-| Register name | Fields
+| Register name  | Offset | Fields
 
 {% for register in registers %}
 
 | {{register.name}}
+| {{register.offset}}
 |
 
 [cols="50%,25%,25%"]
 !===
-! Field name ! Rights ! Size(bytes)
+! Bits ! Field name ! Rights ! Size(bytes)
 
     {% for field in register.fields %}
-
+! [{{field.high}}:{{field.low}}]
 ! {{field.name}}
 ! {{field.rights}}
 ! {{field.width}}

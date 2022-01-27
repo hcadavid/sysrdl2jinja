@@ -19,6 +19,7 @@ def parse_rdl_file(_rdl_file):
     for register_def in root.top.inst.children:
         register = dict()
         register["name"] = register_def.inst_name
+        register["offset"] = hex(register_def.addr_offset)
         fields = []
         register["fields"] = fields
 
