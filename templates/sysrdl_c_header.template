@@ -1,10 +1,18 @@
-#ifndef REGS_H_
-#define REGS_H_
+#ifndef __{{map_name}}_REGISTER_MAP__
+#define __{{map_name}}_MAP_REGISTER_MAP__
+
+enum {{map_name}}_ADDR_MAP_REGS {
+   {% for register in registers %}
+  {{register.name}} = {{register.offset}},
+{%-endfor%}
+
+};
 
 {% for register in registers %}
-    {% for field in register.fields %}
-#define {{register.name}}_{{field.name.replace(' ','_')}}  {{field.width}}
-    {%endfor%}
+/* {{register.name}} registers */
+{% for field in register.fields -%}
+#define {{field.name.replace(' ','_')}}  GENMASK({{field.low}},{{field.high}})
+{%endfor%}
 {%endfor%}
 
 #endif

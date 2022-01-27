@@ -13,26 +13,28 @@ def parse_rdl_file(_rdl_file):
     # Elaborate the design
     root = rdlc.elaborate()
 
+    _map_name = root.top.inst_name
     _registers = []
+
 
     # iterate over registries definition
     for register_def in root.top.inst.children:
         register = dict()
-        register["name"] = register_def.inst_name
+        register["name"] = register_def.inst_name.upper()
         register["offset"] = hex(register_def.addr_offset)
         fields = []
         register["fields"] = fields
 
         for field_def in register_def.children:
             field = dict()
-            field["id"] = field_def.inst_name
+            field["id"] = field_def.inst_name.upper()
             field["low"] = field_def.low
             field["high"] = field_def.high
             field["lsb"] = field_def.lsb
             field["msb"] = field_def.msb
             field["width"] = field_def.width
             if "name" in field_def.properties:
-                field["name"] = field_def.properties["name"]
+                field["name"] = field_def.properties["name"].upper()
             else:
                 field["name"] = "undefined"
             if "hw" in field_def.properties:
@@ -47,7 +49,7 @@ def parse_rdl_file(_rdl_file):
 
         _registers.append(register)
 
-    return _registers
+    return _registers, _map_name
 
 
 def main():
@@ -64,11 +66,11 @@ def main():
     output_file = sys.argv[3]
 
     try:
-        registers = parse_rdl_file(rdl_file)
+        registers, map_name = parse_rdl_file(rdl_file)
         with open(template_file) as file_:
             template = Template(file_.read())
         with open(output_file, 'w') as output_:
-            output_.write(template.render(registers=registers))
+            output_.write(template.render(registers=registers, map_name=map_name.upper()))
         exit(0)
     except RDLCompileError as exc:
         # error details are sent to stderr by the parser, next line add further details
