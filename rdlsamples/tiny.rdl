@@ -1,4 +1,5 @@
 addrmap tiny {
+    littleendian;
     reg {
         field {
             sw=rw;

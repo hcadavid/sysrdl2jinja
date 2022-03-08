@@ -1,5 +1,4 @@
 addrmap rovercmds {
-    littleendian;
     reg {
         name="COMMANDS REGISTER FOR THEORETICAL ROVER";
         field {
@@ -15,7 +14,7 @@ addrmap rovercmds {
             hw=rw;
         } cmd_param[7]=0x0;
     } CMDREGISTER@0x2D;
-
+  
     reg {
         name="STATUS REGISTERS";
         field {
