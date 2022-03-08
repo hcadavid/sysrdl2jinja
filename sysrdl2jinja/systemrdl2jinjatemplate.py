@@ -3,8 +3,14 @@ import os
 from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
 from jinja2 import Template
 
+class FailedQualityGate (Exception):
+    pass
 
-def parse_rdl_file(_rdl_file):
+def check_quality_gates (_rdl_root):
+    if "bigendian" not in _rdl_root.top.inst.properties and "littleendian" not in _rdl_root.top.inst.properties:
+        raise FailedQualityGate('Undefined endianness for the register map ' + _rdl_root.top.inst_name)
+
+def parse_rdl_file (_rdl_file):
     # Create an instance of the compiler
     rdlc = RDLCompiler()
 
@@ -49,7 +55,7 @@ def parse_rdl_file(_rdl_file):
 
         _registers.append(register)
 
-    return _registers, _map_name
+    return _registers, _map_name, root
 
 
 def main():
@@ -66,7 +72,8 @@ def main():
     output_file = sys.argv[3]
 
     try:
-        registers, map_name = parse_rdl_file(rdl_file)
+        registers, map_name, root = parse_rdl_file(rdl_file)
+        check_quality_gates(root)
         with open(template_file) as file_:
             template = Template(file_.read())
         with open(output_file, 'w') as output_:
@@ -76,3 +83,5 @@ def main():
         # error details are sent to stderr by the parser, next line add further details
         print("File: ", rdl_file, file=sys.stderr)
         exit(1)
+    except FailedQualityGate as exc:
+        print("File: ", rdl_file, exc, file=sys.stderr)
