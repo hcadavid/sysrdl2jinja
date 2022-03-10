@@ -8,7 +8,7 @@
 | {{register.offset}}
 |
 
-[cols="10%,30%,10%,10%,20%,20%"]
+[cols="10%,20%,10%,10%,20%,20%"]
 !===
 ! Bits ! Field name ! HW rights ! SW rights! Reset value ! Size(bytes)
 
