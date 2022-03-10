@@ -8,9 +8,9 @@
 | {{register.offset}}
 |
 
-[cols="20%,20%,20%,20%"]
+[cols="10%,30%,10%,10%,20%,20%"]
 !===
-! Bits ! Field name ! Hardware rights ! Software rights! Reset value ! Size(bytes)
+! Bits ! Field name ! HW rights ! SW rights! Reset value ! Size(bytes)
 
     {% for field in register.fields %}
 ! [{{field.high}}:{{field.low}}]
