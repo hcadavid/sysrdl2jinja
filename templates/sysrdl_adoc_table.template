@@ -10,12 +10,14 @@
 
 [cols="20%,20%,20%,20%"]
 !===
-! Bits ! Field name ! Rights ! Size(bytes)
+! Bits ! Field name ! Hardware rights ! Software rights! Reset value ! Size(bytes)
 
     {% for field in register.fields %}
 ! [{{field.high}}:{{field.low}}]
 ! {{field.name}}
-! {{field.rights}}
+! {{field.hwrights}}
+! {{field.swrights}}
+! {{field.reset}}
 ! {{field.width}}
 
     {%endfor%}
