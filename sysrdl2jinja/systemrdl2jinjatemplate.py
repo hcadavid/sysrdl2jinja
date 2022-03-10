@@ -45,7 +45,6 @@ def parse_rdl_file (_rdl_file):
                 field["name"] = "undefined"
             if "hw" in field_def.properties:
                 field["hwrights"] = str(field_def.properties["hw"]).replace("AccessType.", "")
-                print(">>>>>>", field["hwrights"])
             else:
                 field["hwrights"] = "undefined"
             if "sw" in field_def.properties:

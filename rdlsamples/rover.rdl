@@ -1,4 +1,5 @@
 addrmap rovercmds {
+    bigendian;
     reg {
         name="COMMANDS REGISTER FOR THEORETICAL ROVER";
         field {
